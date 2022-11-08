@@ -42,14 +42,14 @@ packer build .\ubuntu.pkr.hcl
 
 ![TestApply](images/test.png)
 
-    Test automated ```terraform plan```
+    Automated terraform plan
 
 ![AutoTest](images/autotest.png)
 
 
 
 ## Run Ansible Script 
-3. Connect to bastion host instance via SSH agent (ensure to add your keypair via the agent), Clone down the ansible script from  Gitlab repo, update the scipt with values from terraform infrastrutcture output and verify configuration settings are accurate before running ansible script.
+- Connect to bastion host instance via SSH agent (ensure to add your keypair via the agent), Clone down the ansible script from  Gitlab repo, update the scipt with values from terraform infrastrutcture output and verify configuration settings are accurate before running ansible script.
 
 ![bastion instance](images/bastion1.png)
 ![bastion instance](images/bastion2.png)
