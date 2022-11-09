@@ -55,28 +55,23 @@ packer build .\ubuntu.pkr.hcl
 ![bastion instance](images/bastion2.png)
 ![clone repo to bastion instance](images/bastion4.png)
 
-- Since ansible needs to obtain ip addresses of each of the instances form the aws console then the bastion instance would need access to secrete environment variables. Applying best practice requires creating and using a Role that is attached to an "IAMReadOnlyAccess" policy.
-`````
-Create a Role with IAMReadOnlyAccess policy then directly attach it to bastion instance at aws console by clicking "Modify IAM role" under "Security" under the Actions main menu
-`````
+- Since ansible needs to obtain ip addresses of each of the instances form the aws console then the bastion instance would need access to secrete environment variables. Applying best practice requires creating and using a Role that is attached to an "IAMReadOnlyAccess" policy. Create a Role with IAMReadOnlyAccess policy then directly attach it to bastion instance at aws console by clicking "Modify IAM role" under "Security" under the Actions main menu.
+
  - Then confirm that bastion host can connect to aws.
 
 ![confirm access to aws console](images/aws.png)
 
-```
-Note: By default python3.6 might be in use by bastion instance. However, ansible version requires pythin3.8 or higher version.
-Run sudo update-alternatives --config python3 (to display available python version).
-then select Python3.8 from the options.
-Next install boto3 again - run - sudo python3 -m pip install boto3
 
-```
+- Note: By default python3.6 might be in use by bastion instance. However, ansible version requires pythin3.8 or higher version.
+    - Run ```sudo update-alternatives --config python3``` (to display available python version) then select Python3.8 from the options.
+    - Next install boto3 again - run  ```sudo python3 -m pip install boto3```
+
 ![ensure python3.8 or higher is enabled](images/pythonv.png)
 ![re-install boto3](images/pythonv1.png)
 
-- Confirm that ansible can pull down the IP addresses of the instances from aws.
-
+- Confirm that ansible can pull down the IP addresses of the instances from aws. Run:
 `````
-Run: ansible-inventory -i inventory/aws_ec2.yml --graph
+ ansible-inventory -i inventory/aws_ec2.yml --graph
 `````
 ![confirm ansible can pull down instance IPs](images/ipaddresses.png)
 
@@ -86,7 +81,7 @@ Run: ansible-inventory -i inventory/aws_ec2.yml --graph
     - update dns name for the intenal loadbalancer details in /roles/nginx/templates/nginx.conf.j2
     - update RDS endpoint for tooling and wordpress in  setup-db.yml
     - ensure username and password are same in tf.auto.var.
-    -  mount points from Amazon EFS - access points each for tooling and wordpress (values for fsap and fs-) in tasks/main.yml.
+    - mount points from Amazon EFS - access points each for tooling and wordpress (values for fsap and fs-) in tasks/main.yml.
     - update roles folder path in ansible.cfg file.
     - notify ansible to lookup ansible.cfg file. Run : export ANSIBLE_CONFIG=/home/../ansible.cfg.
 
@@ -100,8 +95,8 @@ Run: ansible-inventory -i inventory/aws_ec2.yml --graph
 ![update efs mount point](images/efs1.png)
 ![update efs mount point](images/efs2.png)
 
+- Run ansible script: 
 ```
-Run ansible script: 
 ansible-playbook - i inventory/aws_ec2.yml playbooks/site.yml
 ```
 ![run ansible script](images/ansibleconf1.png)
