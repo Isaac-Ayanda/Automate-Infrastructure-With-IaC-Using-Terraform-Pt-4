@@ -55,7 +55,7 @@ packer build .\ubuntu.pkr.hcl
 ![bastion instance](images/bastion2.png)
 ![clone repo to bastion instance](images/bastion4.png)
 
-- Since ansible needs to obtain ip addresses of each of the instances form the aws console then configure secrete environment variables on the bastion instance.
+- Since ansible needs to obtain ip addresses of each of the instances form the aws console then configure secrete environment variables on the bastion instance. Apply best practice by creating a Role and attached it an "IAMReadOnlyAccess" policy.
 `````
 Run aws configure and add Access Key and Secrete Key
 `````
