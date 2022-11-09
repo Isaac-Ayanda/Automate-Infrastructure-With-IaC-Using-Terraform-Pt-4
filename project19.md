@@ -55,9 +55,9 @@ packer build .\ubuntu.pkr.hcl
 ![bastion instance](images/bastion2.png)
 ![clone repo to bastion instance](images/bastion4.png)
 
-- Since ansible needs to obtain ip addresses of each of the instances form the aws console then configure secrete environment variables on the bastion instance. Apply best practice by creating a Role and attached it an "IAMReadOnlyAccess" policy.
+- Since ansible needs to obtain ip addresses of each of the instances form the aws console then the bastion instance would need access to secrete environment variables. Applying best practice requires creating and using a Role that is attached to an "IAMReadOnlyAccess" policy.
 `````
-Run aws configure and add Access Key and Secrete Key
+Create a Role with IAMReadOnlyAccess policy then directly attach it to bastion instance at aws console by clicking "Modify IAM role" under "Security" under the Actions main menu
 `````
  - Then confirm that bastion host can connect to aws.
 
