@@ -97,7 +97,7 @@ packer build .\ubuntu.pkr.hcl
 
 - Run ansible script: 
 ```
-ansible-playbook - i inventory/aws_ec2.yml playbooks/site.yml
+ansible-playbook -i inventory/aws_ec2.yml playbooks/site.yml
 ```
 ![run ansible script](images/ansibleconf1.png)
 ![run ansible script](images/ansibleconf2.png)
